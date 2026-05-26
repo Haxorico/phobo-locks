@@ -1,0 +1,10 @@
+{
+  "name": "loco",
+  "private": true,
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "dev": "npm run dev:client & npm run dev:server"
+  }
+}

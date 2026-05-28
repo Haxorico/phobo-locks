@@ -1,0 +1,409 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Barlow:wght@400;500;600&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Barlow", sans-serif;
+  background: #0f0f0f;
+  color: #e8e4dc;
+  min-height: 100vh;
+}
+
+.loco-header {
+  border-bottom: 1px solid #2a2a2a;
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #141414;
+}
+
+.loco-logo {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 22px;
+  color: #e8e4dc;
+  letter-spacing: 0.1em;
+}
+
+.loco-logo span {
+  color: #e05a2b;
+}
+
+.loco-tagline {
+  font-size: 11px;
+  color: #555;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-left: 1px solid #2a2a2a;
+  padding-left: 12px;
+  margin-left: 4px;
+}
+
+.loco-body {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.step-card {
+  background: #141414;
+  border: 0.5px solid #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+
+.step-card.inactive {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.step-header {
+  padding: 0.875rem 1.25rem;
+  border-bottom: 0.5px solid #2a2a2a;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-num {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  color: #e05a2b;
+  background: rgba(224, 90, 43, 0.1);
+  border: 0.5px solid rgba(224, 90, 43, 0.3);
+  border-radius: 4px;
+  padding: 2px 7px;
+  letter-spacing: 0.05em;
+}
+
+.step-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #888;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.step-body {
+  padding: 1rem 1.25rem;
+}
+
+/* Services */
+.service-item {
+  padding: 0.75rem 1rem;
+  border: 0.5px solid #2a2a2a;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
+}
+
+.service-item:hover {
+  border-color: #444;
+  background: #1a1a1a;
+}
+
+.service-item.selected {
+  border-color: rgba(224, 90, 43, 0.5);
+  background: rgba(224, 90, 43, 0.07);
+}
+
+.service-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #e8e4dc;
+  margin-bottom: 5px;
+}
+
+.service-item.selected .service-name {
+  color: #e05a2b;
+}
+
+.service-meta {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 11px;
+  color: #555;
+  display: flex;
+  gap: 14px;
+}
+
+.service-item.selected .service-meta {
+  color: rgba(224, 90, 43, 0.6);
+}
+
+/* Calendar */
+.cal-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.cal-nav-btn {
+  background: none;
+  border: 0.5px solid #2a2a2a;
+  border-radius: 4px;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #888;
+  font-size: 14px;
+  transition:
+    background 0.12s,
+    color 0.12s;
+}
+
+.cal-nav-btn:hover {
+  background: #1e1e1e;
+  color: #e8e4dc;
+}
+
+.cal-month {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 12px;
+  color: #e8e4dc;
+  letter-spacing: 0.08em;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+}
+
+.cal-label {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  color: #444;
+  text-align: center;
+  padding: 4px 0;
+  letter-spacing: 0.04em;
+}
+
+.cal-day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #888;
+  transition:
+    background 0.1s,
+    color 0.1s;
+  user-select: none;
+}
+
+.cal-day:hover:not(.empty):not(.past) {
+  background: #1e1e1e;
+  color: #e8e4dc;
+}
+.cal-day.today {
+  border: 0.5px solid #333;
+  color: #e8e4dc;
+  font-weight: 500;
+}
+.cal-day.selected {
+  background: rgba(224, 90, 43, 0.15);
+  color: #e05a2b;
+  font-weight: 600;
+  border: 0.5px solid rgba(224, 90, 43, 0.4);
+}
+.cal-day.past {
+  color: #333;
+  cursor: default;
+}
+.cal-day.empty {
+  cursor: default;
+}
+
+/* Slots */
+.slots-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  max-height: 340px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a transparent;
+}
+
+.slot-item {
+  padding: 8px 10px;
+  border: 0.5px solid #2a2a2a;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    border-color 0.12s,
+    background 0.12s;
+}
+
+.slot-item:hover:not(.taken) {
+  border-color: #444;
+  background: #1a1a1a;
+}
+
+.slot-item.selected {
+  border-color: rgba(224, 90, 43, 0.5);
+  background: rgba(224, 90, 43, 0.08);
+}
+
+.slot-item.taken {
+  opacity: 0.25;
+  cursor: not-allowed;
+}
+
+.slot-time {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  color: #e8e4dc;
+}
+
+.slot-item.selected .slot-time {
+  color: #e05a2b;
+}
+
+.slot-window {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 10px;
+  color: #444;
+  margin-top: 2px;
+}
+
+.slot-item.selected .slot-window {
+  color: rgba(224, 90, 43, 0.5);
+}
+
+.slot-badge {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #e05a2b;
+  margin-top: 2px;
+  opacity: 0.7;
+}
+
+/* States */
+.empty-state {
+  color: #444;
+  font-size: 12px;
+  text-align: center;
+  padding: 2.5rem 0;
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 0.06em;
+}
+
+.loading-state {
+  color: #444;
+  font-size: 12px;
+  text-align: center;
+  padding: 2.5rem 0;
+  font-family: "Share Tech Mono", monospace;
+  letter-spacing: 0.06em;
+  animation: loco-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes loco-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* Confirm bar */
+.confirm-bar {
+  grid-column: 1 / -1;
+  background: #141414;
+  border: 0.5px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  animation: loco-slide-up 0.2s ease;
+}
+
+@keyframes loco-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.confirm-summary {
+  display: flex;
+  gap: 2.5rem;
+}
+
+.confirm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.confirm-label {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #444;
+}
+
+.confirm-value {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 14px;
+  color: #e8e4dc;
+}
+
+.confirm-btn {
+  background: rgba(224, 90, 43, 0.1);
+  border: 0.5px solid rgba(224, 90, 43, 0.4);
+  color: #e05a2b;
+  font-family: "Barlow", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    opacity 0.15s,
+    background 0.15s;
+  white-space: nowrap;
+}
+
+.confirm-btn:hover {
+  background: rgba(224, 90, 43, 0.18);
+}
+
+.error-msg {
+  font-size: 12px;
+  color: #e05a2b;
+  font-family: "Share Tech Mono", monospace;
+  padding: 0.5rem 0;
+  letter-spacing: 0.04em;
+}

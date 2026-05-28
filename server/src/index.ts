@@ -1,12 +1,14 @@
 import express from "express";
+import cors from "cors";
 import { connectDB } from "./db/client.db.js";
 import apiRoutes from "./routes/api.routes.js";
 import { errorHandler } from "./middlewares/error.middleware.js";
 const app = express();
 const PORT = process.env.PORT ?? 3001;
-
+// Basic CORS setup (allows all origins - for development only)
+app.use(cors());
 app.use(express.json());
-app.use("/api", apiRoutes);
+app.use("/api", apiRoutes); 
 app.use(errorHandler);
 connectDB()
   .then(() => {

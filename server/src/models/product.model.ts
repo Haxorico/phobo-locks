@@ -3,6 +3,7 @@ import { client } from "../db/client.db.js";
 
 // Zod schema — runtime validation
 export const ProductSchema = z.object({
+  //TODO: add unum
   name: z.string().min(1),
   price: z.number().min(1),
   timeInMinutes: z.number().min(1),
